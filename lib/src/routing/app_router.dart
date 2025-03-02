@@ -42,7 +42,6 @@ final goRouter = GoRouter(
               final productID = state.pathParameters["id"];
               return MaterialPage(
                 fullscreenDialog: true,
-                key: state.pageKey,
                 child: ProductScreen(
                   productId: productID!,
                 ),
@@ -56,7 +55,6 @@ final goRouter = GoRouter(
                   final productID = state.pathParameters["id"];
                   return MaterialPage(
                     fullscreenDialog: true,
-                    key: state.pageKey,
                     child: LeaveReviewScreen(
                       productId: productID!,
                     ),
@@ -69,7 +67,6 @@ final goRouter = GoRouter(
           name: AppRoute.cart.name,
           pageBuilder: (context, state) => MaterialPage(
             fullscreenDialog: true,
-            key: state.pageKey,
             child: ShoppingCartScreen(),
           ),
           routes: [
@@ -78,7 +75,6 @@ final goRouter = GoRouter(
               name: AppRoute.checkout.name,
               pageBuilder: (context, state) => MaterialPage(
                 fullscreenDialog: true,
-                key: state.pageKey,
                 child: CheckoutScreen(),
               ),
             ),
@@ -89,7 +85,6 @@ final goRouter = GoRouter(
           name: AppRoute.orders.name,
           pageBuilder: (context, state) => MaterialPage(
             fullscreenDialog: true,
-            key: state.pageKey,
             child: OrdersListScreen(),
           ),
         ),
@@ -98,7 +93,6 @@ final goRouter = GoRouter(
           name: AppRoute.account.name,
           pageBuilder: (context, state) => MaterialPage(
             fullscreenDialog: true,
-            key: state.pageKey,
             child: AccountScreen(),
           ),
         ),
@@ -107,7 +101,6 @@ final goRouter = GoRouter(
           name: AppRoute.signIn.name,
           pageBuilder: (context, state) => MaterialPage(
             fullscreenDialog: true,
-            key: state.pageKey,
             child: EmailPasswordSignInScreen(
               formType: EmailPasswordSignInFormType.signIn,
             ),
