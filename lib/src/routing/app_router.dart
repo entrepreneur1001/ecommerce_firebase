@@ -1,4 +1,6 @@
 import 'package:ecommerce_app/src/features/account/account_screen.dart';
+import 'package:ecommerce_app/src/features/checkout/checkout_screen.dart';
+import 'package:ecommerce_app/src/features/leave_review_page/leave_review_screen.dart';
 import 'package:ecommerce_app/src/features/not_found/not_found_screen.dart';
 import 'package:ecommerce_app/src/features/orders_list/orders_list_screen.dart';
 import 'package:ecommerce_app/src/features/product_page/product_screen.dart';
@@ -13,10 +15,12 @@ import 'package:go_router/go_router.dart';
 enum AppRoute {
   home('/'),
   cart('cart'),
+  checkout('checkout'),
   orders('orders'),
   account('account'),
   signIn('signIn'),
-  product('product/:id');
+  product('product/:id'),
+  leaveReview('leaveReview');
 
   const AppRoute(this.path);
   final String path;
@@ -32,19 +36,34 @@ final goRouter = GoRouter(
       builder: (context, state) => ProductsListScreen(),
       routes: [
         GoRoute(
-          path: AppRoute.product.path,
-          name: AppRoute.product.name,
-          pageBuilder: (context, state) {
-            final productID = state.pathParameters["id"];
-            return MaterialPage(
-              fullscreenDialog: true,
-              key: state.pageKey,
-              child: ProductScreen(
-                productId: productID!,
-              ),
-            );
-          },
-        ),
+            path: AppRoute.product.path,
+            name: AppRoute.product.name,
+            pageBuilder: (context, state) {
+              final productID = state.pathParameters["id"];
+              return MaterialPage(
+                fullscreenDialog: true,
+                key: state.pageKey,
+                child: ProductScreen(
+                  productId: productID!,
+                ),
+              );
+            },
+            routes: [
+              GoRoute(
+                path: AppRoute.leaveReview.path,
+                name: AppRoute.leaveReview.name,
+                pageBuilder: (context, state) {
+                  final productID = state.pathParameters["id"];
+                  return MaterialPage(
+                    fullscreenDialog: true,
+                    key: state.pageKey,
+                    child: LeaveReviewScreen(
+                      productId: productID!,
+                    ),
+                  );
+                },
+              )
+            ]),
         GoRoute(
           path: AppRoute.cart.path,
           name: AppRoute.cart.name,
@@ -53,6 +72,17 @@ final goRouter = GoRouter(
             key: state.pageKey,
             child: ShoppingCartScreen(),
           ),
+          routes: [
+            GoRoute(
+              path: AppRoute.checkout.path,
+              name: AppRoute.checkout.name,
+              pageBuilder: (context, state) => MaterialPage(
+                fullscreenDialog: true,
+                key: state.pageKey,
+                child: CheckoutScreen(),
+              ),
+            ),
+          ],
         ),
         GoRoute(
           path: AppRoute.orders.path,
