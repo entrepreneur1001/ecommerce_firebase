@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:ecommerce_app/src/features/product_page/leave_review_action.dart';
 import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
