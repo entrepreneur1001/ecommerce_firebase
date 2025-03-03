@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/src/constants/app_sizes.dart';
 import 'package:ecommerce_app/src/features/orders_list/order_item_list_tile.dart';
 import 'package:ecommerce_app/src/features/orders_list/order_status_label.dart';
-import 'package:ecommerce_app/src/models/item.dart';
-import 'package:ecommerce_app/src/models/order.dart';
+import 'package:ecommerce_app/src/features/product_page/models/item.dart';
+import 'package:ecommerce_app/src/features/orders_list/models/order.dart';
 import 'package:ecommerce_app/src/utils/currency_formatter.dart';
 import 'package:ecommerce_app/src/utils/date_formatter.dart';
 

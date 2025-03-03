@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/src/models/item.dart';
+import 'package:ecommerce_app/src/features/product_page/models/item.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/src/features/checkout/payment/payment_button.dart';
 import 'package:ecommerce_app/src/features/shopping_cart/shopping_cart_item.dart';

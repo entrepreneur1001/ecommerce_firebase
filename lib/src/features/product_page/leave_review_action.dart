@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/src/features/leave_review_page/leave_review_screen.dart';
 import 'package:ecommerce_app/src/features/not_found/empty_placeholder_widget.dart';
 import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
-import 'package:ecommerce_app/src/models/purchase.dart';
+import 'package:ecommerce_app/src/features/checkout/models/purchase.dart';
 import 'package:ecommerce_app/src/routing/app_router.dart';
 import 'package:ecommerce_app/src/utils/date_formatter.dart';
 import 'package:flutter/material.dart';

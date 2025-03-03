@@ -2,7 +2,7 @@ import 'package:ecommerce_app/src/common_widgets/alert_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/src/constants/app_sizes.dart';
 import 'package:ecommerce_app/src/features/product_page/product_reviews/product_rating_bar.dart';
-import 'package:ecommerce_app/src/models/review.dart';
+import 'package:ecommerce_app/src/features/leave_review_page/models/review.dart';
 import 'package:ecommerce_app/src/utils/date_formatter.dart';
 
 /// Simple card widget to show a product review info (score, comment, date)

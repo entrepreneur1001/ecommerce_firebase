@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/src/common_widgets/custom_image.dart';
 import 'package:ecommerce_app/src/constants/app_sizes.dart';
 import 'package:ecommerce_app/src/features/product_page/product_average_rating.dart';
-import 'package:ecommerce_app/src/models/product.dart';
+import 'package:ecommerce_app/src/features/product_page/models/product.dart';
 import 'package:ecommerce_app/src/utils/currency_formatter.dart';
 
 /// Used to show a single product inside a card.

@@ -6,7 +6,7 @@ import 'package:ecommerce_app/src/common_widgets/decorated_box_with_shadow.dart'
 import 'package:ecommerce_app/src/common_widgets/responsive_center.dart';
 import 'package:ecommerce_app/src/constants/app_sizes.dart';
 import 'package:ecommerce_app/src/features/not_found/empty_placeholder_widget.dart';
-import 'package:ecommerce_app/src/models/item.dart';
+import 'package:ecommerce_app/src/features/product_page/models/item.dart';
 
 /// Responsive widget showing the cart items and the checkout button
 class ShoppingCartItemsBuilder extends StatelessWidget {

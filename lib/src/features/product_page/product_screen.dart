@@ -12,7 +12,7 @@ import 'package:ecommerce_app/src/features/product_page/add_to_cart/add_to_cart_
 import 'package:ecommerce_app/src/features/product_page/leave_review_action.dart';
 import 'package:ecommerce_app/src/features/product_page/product_average_rating.dart';
 import 'package:ecommerce_app/src/features/product_page/product_reviews/product_reviews_list.dart';
-import 'package:ecommerce_app/src/models/product.dart';
+import 'package:ecommerce_app/src/features/product_page/models/product.dart';
 
 /// Shows the product page for a given product ID.
 class ProductScreen extends StatelessWidget {

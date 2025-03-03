@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/src/models/order.dart';
+import 'package:ecommerce_app/src/features/orders_list/models/order.dart';
 
 /// Model class containing order details that need to be shown in the product
 /// page if the product was purchased by the current user.

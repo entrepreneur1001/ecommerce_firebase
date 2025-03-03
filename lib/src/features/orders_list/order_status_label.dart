@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/src/models/order.dart';
+import 'package:ecommerce_app/src/features/orders_list/models/order.dart';
 
 /// Shows the status of the order
 class OrderStatusLabel extends StatelessWidget {
