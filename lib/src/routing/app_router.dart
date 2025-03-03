@@ -12,27 +12,30 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
-  home,
-  product,
-  leaveReview,
-  cart,
-  checkout,
-  orders,
-  account,
-  signIn,
+  home('/'),
+  product('product/:id'),
+  leaveReview('review'),
+  cart('cart'),
+  checkout('checkout'),
+  orders('orders'),
+  account('account'),
+  signIn('signIn');
+
+  final String path;
+  const AppRoute(this.path);
 }
 
 final goRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: AppRoute.home.path,
   debugLogDiagnostics: false,
   routes: [
     GoRoute(
-      path: '/',
+      path: AppRoute.home.path,
       name: AppRoute.home.name,
       builder: (context, state) => const ProductsListScreen(),
       routes: [
         GoRoute(
-          path: 'product/:id',
+          path: AppRoute.product.path,
           name: AppRoute.product.name,
           builder: (context, state) {
             final productId = state.pathParameters['id']!;
@@ -40,7 +43,7 @@ final goRouter = GoRouter(
           },
           routes: [
             GoRoute(
-              path: 'review',
+              path: AppRoute.leaveReview.path,
               name: AppRoute.leaveReview.name,
               pageBuilder: (context, state) {
                 final productId = state.pathParameters['id']!;
@@ -53,7 +56,7 @@ final goRouter = GoRouter(
           ],
         ),
         GoRoute(
-          path: 'cart',
+          path: AppRoute.cart.path,
           name: AppRoute.cart.name,
           pageBuilder: (context, state) => const MaterialPage(
             fullscreenDialog: true,
@@ -61,7 +64,7 @@ final goRouter = GoRouter(
           ),
           routes: [
             GoRoute(
-              path: 'checkout',
+              path: AppRoute.checkout.path,
               name: AppRoute.checkout.name,
               pageBuilder: (context, state) => const MaterialPage(
                 fullscreenDialog: true,
@@ -71,7 +74,7 @@ final goRouter = GoRouter(
           ],
         ),
         GoRoute(
-          path: 'orders',
+          path: AppRoute.orders.path,
           name: AppRoute.orders.name,
           pageBuilder: (context, state) => const MaterialPage(
             fullscreenDialog: true,
@@ -79,7 +82,7 @@ final goRouter = GoRouter(
           ),
         ),
         GoRoute(
-          path: 'account',
+          path: AppRoute.account.path,
           name: AppRoute.account.name,
           pageBuilder: (context, state) => const MaterialPage(
             fullscreenDialog: true,
@@ -87,7 +90,7 @@ final goRouter = GoRouter(
           ),
         ),
         GoRoute(
-          path: 'signIn',
+          path: AppRoute.signIn.path,
           name: AppRoute.signIn.name,
           pageBuilder: (context, state) => const MaterialPage(
             fullscreenDialog: true,
