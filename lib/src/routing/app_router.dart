@@ -26,8 +26,9 @@ enum AppRoute {
 }
 
 final goRouter = GoRouter(
+  overridePlatformDefaultLocation: true,
   initialLocation: AppRoute.home.path,
-  debugLogDiagnostics: false,
+  debugLogDiagnostics: true,
   routes: [
     GoRoute(
       path: AppRoute.home.path,
