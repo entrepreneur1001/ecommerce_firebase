@@ -17,12 +17,14 @@ class FakeProductsRepository {
     }
   }
 
-  Future<List<Product>> fetchProductList() {
+  Future<List<Product>> fetchProductList() async {
+    await Future.delayed(Duration(seconds: 1));
     return Future.value(_products);
   }
 
-  Stream<List<Product>> watchProductList() {
-    return Stream.value(_products);
+  Stream<List<Product>> watchProductList() async* {
+    await Future.delayed(Duration(seconds: 1));
+    yield* Stream.value(_products);
   }
 
   Stream<Product?> watchProduct(String id) {
@@ -33,4 +35,20 @@ class FakeProductsRepository {
 
 final productsRepositoryProvider = Provider<FakeProductsRepository>((ref) {
   return FakeProductsRepository();
+});
+
+final productListStreamProvider = StreamProvider<List<Product>>((ref) {
+  final repo = ref.watch(productsRepositoryProvider);
+  return repo.watchProductList();
+});
+
+final productListFutureProvider = FutureProvider<List<Product>>((ref) {
+  final repo = ref.watch(productsRepositoryProvider);
+  return repo.fetchProductList();
+});
+
+final productStreamProvider =
+    StreamProvider.family<Product?, String>((ref, id) {
+  final repo = ref.watch(productsRepositoryProvider);
+  return repo.watchProduct(id);
 });
