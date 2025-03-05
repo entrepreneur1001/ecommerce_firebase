@@ -9,19 +9,20 @@ import 'package:ecommerce_app/src/features/products/presentation/product_screen/
 import 'package:ecommerce_app/src/features/products/presentation/products_list/products_list_screen.dart';
 import 'package:ecommerce_app/src/features/reviews/presentation/leave_review_screen/leave_review_screen.dart';
 import 'package:ecommerce_app/src/routing/not_found_screen.dart';
+import 'package:ecommerce_app/src/utils/go_router_refresh_stream.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
   home('/', false),
-  product('product/:id', false),
-  leaveReview('review', false),
-  cart('cart', false),
-  checkout('checkout', false),
-  orders('orders', true),
-  account('account', true),
-  signIn('signIn', false);
+  product('/product/:id', false),
+  leaveReview('/review', false),
+  cart('/cart', false),
+  checkout('/checkout', false),
+  orders('/orders', true),
+  account('/account', true),
+  signIn('/signIn', false);
 
   final String path;
   final bool isAuthRequired;
@@ -30,37 +31,24 @@ enum AppRoute {
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
-  String? redirectLocation; // Store intended route
   return GoRouter(
     overridePlatformDefaultLocation: true,
     initialLocation: AppRoute.home.path,
     debugLogDiagnostics: true,
-    redirect: (context, state) {
+    redirect: (_, state) {
       final isLoggedIn = authRepository.currentUser != null;
-      final matchedRoute = AppRoute.values.firstWhere(
-        (route) {
-          print("route.name ${route.name}");
-          print("route.path ${route.path}");
-          print("route.isAuthRequired ${route.isAuthRequired}");
-          return state.matchedLocation.contains(route.path.split(':').first);
-        },
-        orElse: () => AppRoute.home,
-      );
-
-      if (!isLoggedIn && matchedRoute.isAuthRequired) {
-        // Store the original location before redirecting to login
-        redirectLocation = state.matchedLocation;
-        return AppRoute.signIn.path;
+      final path = state.uri.path;
+      if (isLoggedIn) {
+        if (path == AppRoute.signIn.path) {
+          return AppRoute.home.path;
+        }
+      } else {
+        if (path == AppRoute.account.path || path == AppRoute.orders.path) {
+          return AppRoute.home.path;
+        }
       }
-
-      // If user just logged in, redirect them to the stored location
-      if (isLoggedIn && state.matchedLocation == AppRoute.signIn.path) {
-        final destination = redirectLocation ?? AppRoute.home.path;
-        redirectLocation = null; // Clear stored location
-        return destination;
-      }
-      return null; // No redirect if conditions are not met
     },
+    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
       GoRoute(
         path: AppRoute.home.path,
